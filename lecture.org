@@ -172,7 +172,7 @@
 
   struct Foo foo = { 0, 'a' };
 
-  struct *Foo pfoo = &foo;
+  struct Foo* pfoo = &foo;
 
   printf("field1: %d, field2: %c\n", pfoo->field1, pfoo->field2);
 
