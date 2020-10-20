@@ -1,0 +1,307 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+
+* 2020 KNOU Data Structure
+
+** [ ] C language briefing
+
+*** variable
+- declaration: ~<type> <identifier> [= <initial value>];~
+  #+begin_src c
+    int foo;
+    char bar = 'c';
+  #+end_src
+
+*** function
+- declaration: ~<return type> <identifier> ( [parameters] ) {<body statements> [<return> <expression>;]}~
+
+- parameter definition is almost same with the variable decl.
+  it can be extended with comma character
+
+    #+begin_src c
+    int some_func(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // `char *name` is a pointer parameter we'll explain that later on.
+    void foo_func(char* name) {
+        printf("hello %s\n", name);
+    }
+    #+end_src
+
+***  printf
+- A function for displaying variable.
+  it's defined in the `stdio.h` (standard input output)
+  it takes an format specifier and constants and variables to print.
+
+- format specifier: a string for defining how to print the variable.
+
+  | "%d"   | int                                                |
+  | "%2d"  | int at least 2 characters wide in right aligned.   |
+  | "%-2d" | int at least 2 characters wide in left aligned.    |
+  | "%02d" | int at least 2 characters wide with leading zeros. |
+  | "%x"   | int as hexidecimal notation.                       |
+  | "%f"   | float                                              |
+  | "%c"   | char                                               |
+  | "%s"   | char*                                              |
+                                                                
+    #+begin_src c
+  int a = 1;                                                    
+  printf("%d\n", a);
+    #+end_src
+
+
+*** array
+- declaration: ~<type> <name> [<size>][<size>]*~
+  the `SIZE` must be known at compile time(the time when the executable is being built by the compiler).
+  c language spec mandates row-major order for storing multi-dimensional array.
+   https://en.wikipedia.org/wiki/Row-_and_column-major_order
+
+    #+begin_src  c
+    int arr[5]; // index range: [0~4]
+    int arr2[2][3]; // index range [0~1][0~2]
+    #+end_src
+
+- usage: array element can be accessed with index(normally integer value in C language).
+  
+    #+begin_src c
+   int x = arr[0];
+   int y = arr2[1][2];
+   printf("%d %d\n", x, y);
+    #+end_src
+
+
+***  char * string aka. C string
+- it's just array of `char` with '\0' on the end of the array.
+    #+begin_src c
+  char *foo = "abcd";
+
+  char foo[5] = {'a', 'b', 'c', 'd', '\0'};
+    #+end_src
+
+
+*** struct
+- declaration:
+  ~struct <identifier> {<field delcarations>} [<instance>];~
+
+- usage:
+    #+begin_src c
+    // decl Foo struct 
+    struct Foo {
+        int field1;
+        char field2;
+    };
+
+    // init Foo struct instance
+    struct Foo foo = { 0, 'a' };
+
+    struct Foo foo = { 'a', 0 };
+
+    // dot syntax called "designated field initializer"
+    struct Foo foo = { .field1 = 0, .field2 = 'a' };
+
+    // accessing field
+    printf("field1: %d, field2: %c\n", foo.field1, foo.field2);
+    #+end_src
+
+
+***  typedef struct
+- declaration: ~typedef struct <identifier> {<field delcarations>} [<typename>];~
+
+    #+begin_src c
+    // decl Foo struct as a type 
+    typedef struct Foo {
+        int field1;
+        char field2;
+    } FooType;
+
+    // init Foo struct type instance
+    FooType foo = {
+        .field1 = 0,
+        .field2 = 'a'
+    };
+    #+end_src
+
+*** pointer & reference
+
+- purpose: Sometimes, we need to move around variables without copying
+  it's contents for performance reasons and there are a few cases
+  where it's mandatory. for example, heap allocated pointer and it's content.
+
+**** pointer
+
+- declaration: ~<type> * <identifier> [= <initial reference value>];~
+
+- it's variable of an address for some variable or function etc.
+
+- it's also used as an dereferencing mechanism when it is used outside of declaration.
+
+**** reference
+
+- declaration: &<identifier>;
+  it's a mechanism for getting an address of the target.
+
+**** dereferencing
+
+- Getting the content of the pointer.
+
+  + non-struct variable: ~*<identifier>~
+
+  + struct variable: ~<identifier> -> <field name>~ aka `arrow syntax`.
+
+
+**** example
+#+begin_src  c
+  int a = 1;
+  // `&a` means getting the address of the `a`.
+  // the pointer variable `b` is set by address of the `a`.
+  int* b = &a; 
+
+  void foo(int* a) {
+      //here the a is dereferenced by `*` operator. aka. getting the content.
+      printf("%d\n", *a);
+  }
+
+  // if variable is a struct, we can dereference the fields of it with `->` syntax.
+  struct Foo {
+      int field1;
+      char field2;
+  };
+
+  struct Foo foo = { 0, 'a' };
+
+  struct *Foo pfoo = &foo;
+
+  printf("field1: %d, field2: %c\n", pfoo->field1, pfoo->field2);
+#+end_src
+
+
+*** memory model for programmer.
+
+**** heap allocated variable.
+
+- for large.(why?)
+
+- it can be slow compared to stack. (why?)
+
+- it's allocated/deallocated by programer manually.
+  for c language, the `malloc`/`free` function is used for allocation/deallocation.
+
+#+begin_src  c
+  #include <stdlib.h>
+
+  // allocation for 100 chars.
+  // malloc returns (void *) type, so we must type conversion.
+  char* foo = (char *)malloc(100);
+
+  // deallocation
+  free(foo);
+#+end_src
+
+
+**** stack allocated variable.
+
+- for small. (why?)
+
+- it can be fast compared to heap allocation and access. (why?)
+
+- the memory management is controlled by language semantics.
+  for c language, block scope is main sematic for stack allocations.
+
+#+begin_src c
+  int main() {
+    int a;
+
+    {
+      int b;
+    } // <== here b is destroyed
+
+    return 0
+  } // <== here a is destroyed
+#+end_src
+
+
+*** control flow
+
+**** if else 
+
+**** for loop
+
+**** while, do ~ while
+
+**** switch
+- synatx
+  #+begin_src  c
+    switch (<identifier>) {
+    case <expression>: 
+         //do something this.;
+         //do something that.;
+         break;
+    case <expression>:
+         ...
+         break;
+    case <expression>:
+    case <expression>:
+         // may do something in between matching cases;
+    case <expression>:
+         ...
+         break;
+    default:
+         //do something in case of none of the matching is successful.;
+    }
+  #+end_src
+
+- the ~<expression>~ for case must be ~constant expression~. 
+
+- the ~default~ is optional.
+
+**** break
+- Abort the nearst loop construct like   ~for~, ~while~, ~do ... while~ and the ~switch~.
+    #+begin_src c
+      for(int i =0; i < 10; i++) {
+
+          for(int j =0; j < 10; j++) { //  <-------------+
+                                       //                |
+              if ( i > 5 && j > 5) {   //                |
+                  break; // this aborts inner for loop---+
+              }
+          }
+      }
+    #+end_src
+  
+**** continue
+- similar to break, it does not completely aborts loop entirely but just aborts single execution of the loop. 
+    #+begin_src c
+      for(int i =0; i < 10; i++) { 
+
+          if ( i % 2 == 0 ) { // <=== whenever this condition is met, those executions will be skipped. 
+              continue;                     //                                    | 
+          }                                 //                                    |
+                                            //                                    |
+          printf("I: %3d,  J: %3d\n", i, j);// <----------------------------------+
+          printf("hooray!!");               // <----------------------------------+
+      }
+    #+end_src
+
+**** goto
+- synatx: ~goto <label name>;~
+- can jump to label
+- famous quote: "goto considered harmful" https://www.explainxkcd.com/wiki/index.php/292:_goto
+
+**** label
+- synatx: ~<label name>:~
+- a placeholder for goto
+
+
+
+* TODO
+** DONE null terminated string in C
+** DONE control flow constructs
+** file I/O
+** error handling in C
+** code organization.
+*** header file
+**** difference between include "foo.h" vs include <foo.h>
+*** prerpocessor
+**** #define #ifdef #pragma once
+** dynamic allocation for struct
+** using library
