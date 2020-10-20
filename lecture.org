@@ -308,6 +308,32 @@
 - a placeholder for goto
 
 
+*** operator precedence 
+https://en.cppreference.com/w/c/language/operator_precedence
+
+
+*** preprocessor
+
+**** #include
+
+- syntax: ~#include <relative path>~ or  ~#include "relative path"~
+
+- double quote ~#include "foo.h"~  vs angle bracket  ~#include <foo.h>~
+
+- double quote searches current directory of the current source or project file.
+
+- single quote searches ~system directory~ which is set by compiler option and configurations.
+
+
+**** #define
+
+- syntax: ~#define A B~
+
+- replace ~A~ with ~B~
+
+  
+**** #ifdef #elif #endif
+
 
 * TODO
 ** DONE null terminated string in C
