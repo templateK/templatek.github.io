@@ -148,6 +148,9 @@
 
   + struct variable: ~<identifier> -> <field name>~ aka `arrow syntax`.
 
+**** pointer arithmetic
+
+- pointer value can be changed just like ordinary integer values.
 
 **** example
 #+begin_src  c
@@ -172,6 +175,19 @@
   struct *Foo pfoo = &foo;
 
   printf("field1: %d, field2: %c\n", pfoo->field1, pfoo->field2);
+
+  int arr[5] = {1,2,3,4,5};
+  int* pint = arr;
+  printf("%d\n", *pint);   // print current content of parr.
+  pint++;                  // increase parr address by size of single integer.
+  printf("%d\n", *pint++); // print then content and increase pointer at the same(?) time.
+  pint += 1;               //
+  printf("%d\n", *pint);   // what's the result of this?
+
+  char* pchar = (char *)pint;
+  pchar += 4;
+  pint = (int *)pchar;
+  printf("%d\n", *pint);   // what's the result of this?
 #+end_src
 
 
