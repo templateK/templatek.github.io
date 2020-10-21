@@ -192,51 +192,6 @@
 #+end_src
 
 
-*** memory model for programmer.
-
-**** heap allocated variable.
-
-- for large.(why?)
-
-- it can be slow compared to stack. (why?)
-
-- it's allocated/deallocated by programer manually.
-  for c language, the `malloc`/`free` function is used for allocation/deallocation.
-
-#+begin_src  c
-  #include <stdlib.h>
-
-  // allocation for 100 chars.
-  // malloc returns (void *) type, so we must type conversion.
-  char* foo = (char *)malloc(100);
-
-  // deallocation
-  free(foo);
-#+end_src
-
-
-**** stack allocated variable.
-
-- for small. (why?)
-
-- it can be fast compared to heap allocation and access. (why?)
-
-- the memory management is controlled by language semantics.
-  for c language, block scope is main sematic for stack allocations.
-
-#+begin_src c
-  int main() {
-    int a;
-
-    {
-      int b;
-    } // <== here b is destroyed
-
-    return 0
-  } // <== here a is destroyed
-#+end_src
-
-
 *** control flow
 
 **** if else 
@@ -311,6 +266,51 @@
 
 *** operator precedence 
 https://en.cppreference.com/w/c/language/operator_precedence
+
+
+*** memory model for programmer.
+
+**** heap allocated variable.
+
+- for large.(why?)
+
+- it can be slow compared to stack. (why?)
+
+- it's allocated/deallocated by programer manually.
+  for c language, the `malloc`/`free` function is used for allocation/deallocation.
+
+#+begin_src  c
+  #include <stdlib.h>
+
+  // allocation for 100 chars.
+  // malloc returns (void *) type, so we must type conversion.
+  char* foo = (char *)malloc(100);
+
+  // deallocation
+  free(foo);
+#+end_src
+
+
+**** stack allocated variable.
+
+- for small. (why?)
+
+- It can be fast compared to heap allocation. (why?)
+
+- the memory management is controlled by language semantics.
+  For c language, block scope is the main sematic for stack allocations.
+
+#+begin_src c
+  int main() {
+    int a;
+
+    {
+      int b;
+    } // <== here b is destroyed
+
+    return 0
+  } // <== here a is destroyed
+#+end_src
 
 
 *** preprocessor
@@ -410,7 +410,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 *** Error Handling 
 
-  There will be interal error state is set when executing for some c functions.
+  Interal error state will be set when some c functions is being executed if the operation fails.
 
   We can check these errors by ~int ferror( FILE *file )~ in file handling etc.
 
