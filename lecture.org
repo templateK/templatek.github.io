@@ -387,25 +387,50 @@ https://en.cppreference.com/w/c/language/operator_precedence
   + write a null-terminated string to file:  ~int fputs(char* str, FILE *stream )~
 
 
-- Error Handling:
+- File Error Handling
 
-  There will be interal error state is set when executing all of the fseries functions.
+  Check the return value of ~fopen~ ~fputs~ ~fgets~
 
-  We can check these errors by ~int ferror( FILE *file )~
+  Non-zero value indicates that there's error. 
 
-  the return value is either 0 on successful or non-zero value 
+  Most commonly checked error value is ~EOF~ which indicates End of File or some other errors.
 
-  + Windows: https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/fputs-fputws?view=vs-2019
 
-  + Linux: https://linux.die.net/man/3/explain_ferror
+- example 
 
+    #+begin_src c
+    FILE *file = fopen("foo.txt", "r");
+    int result = 0;
+    while ( (result = fgets(buf, file)) != NULL) {
+        printf("%s", result);
+    }
+    fclose(file);
+      #+end_src
+
+
+*** Error Handling 
+
+  There will be interal error state is set when executing for some c functions.
+
+  We can check these errors by ~int ferror( FILE *file )~ in file handling etc.
+
+  the return value is either ~0~ on successful or non-zero value 
+
+  Windows
+    - [[https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/fputs-fputws?view=vs-2019][microsoft fputs]]
+    - [[https://docs.microsoft.com/en-us/cpp/c-runtime-library/errno-doserrno-sys-errlist-and-sys-nerr?view=vs-2019][microsfot errno]]
+
+  Linux
+    - [[https://linux.die.net/man/3/fputs][linux man page fputs]]
+    - [[https://linux.die.net/man/3/errno][linux man page errno]]
+    - [[https://linux.die.net/man/3/explain_ferror][linux man page explain＿error]]
 
 
 * TODO
 ** DONE null terminated string in C
 ** DONE control flow constructs
-** file I/O
-** error handling in C
+** DONE file I/O
+** DONE error handling in C
 ** code organization.
 *** header file
 **** difference between include "foo.h" vs include <foo.h>
