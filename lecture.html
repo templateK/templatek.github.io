@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-20 화 13:11 -->
+<!-- 2020-10-21 수 13:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Data Structure</title>
@@ -42,56 +42,57 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org08a9d2e">1. 2020 KNOU Data Structure</a>
+<li><a href="#orge005759">1. 2020 KNOU Data Structure</a>
 <ul>
-<li><a href="#org4c8291c">1.1. [ ] C language briefing</a>
+<li><a href="#org60f0bfd">1.1. [ ] C language briefing</a>
 <ul>
-<li><a href="#org71617a0">1.1.1. variable</a></li>
-<li><a href="#org8770250">1.1.2. function</a></li>
-<li><a href="#orgc58a806">1.1.3. printf</a></li>
-<li><a href="#org380414c">1.1.4. array</a></li>
-<li><a href="#org7b67d05">1.1.5. char * string aka. C string</a></li>
-<li><a href="#orgcb2d260">1.1.6. struct</a></li>
-<li><a href="#org5a98803">1.1.7. typedef struct</a></li>
-<li><a href="#org46feadb">1.1.8. pointer &amp; reference</a></li>
-<li><a href="#orgfb86124">1.1.9. memory model for programmer.</a></li>
-<li><a href="#org936a723">1.1.10. control flow</a></li>
-<li><a href="#org3d4788f">1.1.11. operator precedence</a></li>
-<li><a href="#org31dc55a">1.1.12. preprocessor</a></li>
+<li><a href="#orgcb839b5">1.1.1. variable</a></li>
+<li><a href="#org86c0b54">1.1.2. function</a></li>
+<li><a href="#orgfa9fa9e">1.1.3. printf</a></li>
+<li><a href="#org7cf7f48">1.1.4. array</a></li>
+<li><a href="#orga5d59b2">1.1.5. char * string aka. C string</a></li>
+<li><a href="#orgd397236">1.1.6. struct</a></li>
+<li><a href="#org2094eb2">1.1.7. typedef struct</a></li>
+<li><a href="#orga91165f">1.1.8. pointer &amp; reference</a></li>
+<li><a href="#orga7195e4">1.1.9. memory model for programmer.</a></li>
+<li><a href="#orgb286501">1.1.10. control flow</a></li>
+<li><a href="#orga59acc6">1.1.11. operator precedence</a></li>
+<li><a href="#orgc00c261">1.1.12. preprocessor</a></li>
+<li><a href="#org87ea2d5">1.1.13. Input / Ouput</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5a2b4e9">2. TODO</a>
+<li><a href="#orgfdbf5f6">2. TODO</a>
 <ul>
-<li><a href="#org69a0574">2.1. <span class="done DONE">DONE</span> null terminated string in C</a></li>
-<li><a href="#org0eb2d8e">2.2. <span class="done DONE">DONE</span> control flow constructs</a></li>
-<li><a href="#org5501bd3">2.3. file I/O</a></li>
-<li><a href="#org363f8a9">2.4. error handling in C</a></li>
-<li><a href="#orgb0da453">2.5. code organization.</a>
+<li><a href="#org0a7ae0c">2.1. <span class="done DONE">DONE</span> null terminated string in C</a></li>
+<li><a href="#org7fe84ce">2.2. <span class="done DONE">DONE</span> control flow constructs</a></li>
+<li><a href="#org91d91ad">2.3. file I/O</a></li>
+<li><a href="#orgfcf3163">2.4. error handling in C</a></li>
+<li><a href="#orgd688315">2.5. code organization.</a>
 <ul>
-<li><a href="#orga2cbe6a">2.5.1. header file</a></li>
-<li><a href="#orgffc34bd">2.5.2. prerpocessor</a></li>
+<li><a href="#org9148dc1">2.5.1. header file</a></li>
+<li><a href="#org41998ce">2.5.2. prerpocessor</a></li>
 </ul>
 </li>
-<li><a href="#org16739ad">2.6. dynamic allocation for struct</a></li>
-<li><a href="#org67a0cba">2.7. using library</a></li>
+<li><a href="#orgc0c826a">2.6. dynamic allocation for struct</a></li>
+<li><a href="#orgf9b7ad9">2.7. using library</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org08a9d2e" class="outline-2">
-<h2 id="org08a9d2e"><span class="section-number-2">1</span> 2020 KNOU Data Structure</h2>
+<div id="outline-container-orge005759" class="outline-2">
+<h2 id="orge005759"><span class="section-number-2">1</span> 2020 KNOU Data Structure</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org4c8291c" class="outline-3">
-<h3 id="org4c8291c"><span class="section-number-3">1.1</span> [ ] C language briefing</h3>
+<div id="outline-container-org60f0bfd" class="outline-3">
+<h3 id="org60f0bfd"><span class="section-number-3">1.1</span> [ ] C language briefing</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org71617a0" class="outline-4">
-<h4 id="org71617a0"><span class="section-number-4">1.1.1</span> variable</h4>
+<div id="outline-container-orgcb839b5" class="outline-4">
+<h4 id="orgcb839b5"><span class="section-number-4">1.1.1</span> variable</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li><p>
@@ -107,8 +108,8 @@ declaration: <code>&lt;type&gt; &lt;identifier&gt; [= &lt;initial value&gt;];</c
 </div>
 </div>
 
-<div id="outline-container-org8770250" class="outline-4">
-<h4 id="org8770250"><span class="section-number-4">1.1.2</span> function</h4>
+<div id="outline-container-org86c0b54" class="outline-4">
+<h4 id="org86c0b54"><span class="section-number-4">1.1.2</span> function</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>declaration: <code>&lt;return type&gt; &lt;identifier&gt; ( [parameters] ) {&lt;body statements&gt; [&lt;return&gt; &lt;expression&gt;;]}</code></li>
@@ -134,8 +135,8 @@ it can be extended with comma character
 </div>
 </div>
 
-<div id="outline-container-orgc58a806" class="outline-4">
-<h4 id="orgc58a806"><span class="section-number-4">1.1.3</span> printf</h4>
+<div id="outline-container-orgfa9fa9e" class="outline-4">
+<h4 id="orgfa9fa9e"><span class="section-number-4">1.1.3</span> printf</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>A function for displaying variable.
@@ -208,8 +209,8 @@ printf(<span class="org-string">"%d\n"</span>, a);
 </div>
 
 
-<div id="outline-container-org380414c" class="outline-4">
-<h4 id="org380414c"><span class="section-number-4">1.1.4</span> array</h4>
+<div id="outline-container-org7cf7f48" class="outline-4">
+<h4 id="org7cf7f48"><span class="section-number-4">1.1.4</span> array</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li><p>
@@ -242,8 +243,8 @@ printf(<span class="org-string">"%d %d\n"</span>, x, y);
 </div>
 
 
-<div id="outline-container-org7b67d05" class="outline-4">
-<h4 id="org7b67d05"><span class="section-number-4">1.1.5</span> char * string aka. C string</h4>
+<div id="outline-container-orga5d59b2" class="outline-4">
+<h4 id="orga5d59b2"><span class="section-number-4">1.1.5</span> char * string aka. C string</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li><p>
@@ -261,8 +262,8 @@ it's just array of `char` with '\0' on the end of the array.
 </div>
 
 
-<div id="outline-container-orgcb2d260" class="outline-4">
-<h4 id="orgcb2d260"><span class="section-number-4">1.1.6</span> struct</h4>
+<div id="outline-container-orgd397236" class="outline-4">
+<h4 id="orgd397236"><span class="section-number-4">1.1.6</span> struct</h4>
 <div class="outline-text-4" id="text-1-1-6">
 <ul class="org-ul">
 <li>declaration:
@@ -296,8 +297,8 @@ printf(<span class="org-string">"field1: %d, field2: %c\n"</span>, foo.field1, f
 </div>
 
 
-<div id="outline-container-org5a98803" class="outline-4">
-<h4 id="org5a98803"><span class="section-number-4">1.1.7</span> typedef struct</h4>
+<div id="outline-container-org2094eb2" class="outline-4">
+<h4 id="org2094eb2"><span class="section-number-4">1.1.7</span> typedef struct</h4>
 <div class="outline-text-4" id="text-1-1-7">
 <ul class="org-ul">
 <li><p>
@@ -323,8 +324,8 @@ declaration: <code>typedef struct &lt;identifier&gt; {&lt;field delcarations&gt;
 </div>
 </div>
 
-<div id="outline-container-org46feadb" class="outline-4">
-<h4 id="org46feadb"><span class="section-number-4">1.1.8</span> pointer &amp; reference</h4>
+<div id="outline-container-orga91165f" class="outline-4">
+<h4 id="orga91165f"><span class="section-number-4">1.1.8</span> pointer &amp; reference</h4>
 <div class="outline-text-4" id="text-1-1-8">
 <ul class="org-ul">
 <li>purpose: Sometimes, we need to move around variables without copying
@@ -334,7 +335,7 @@ where it's mandatory. for example, heap allocated pointer and it's content.</li>
 </div>
 
 <ol class="org-ol">
-<li><a id="org1012658"></a>pointer<br />
+<li><a id="orgbd481f5"></a>pointer<br />
 <div class="outline-text-5" id="text-1-1-8-1">
 <ul class="org-ul">
 <li>declaration: <code>&lt;type&gt; * &lt;identifier&gt; [= &lt;initial reference value&gt;];</code></li>
@@ -346,7 +347,7 @@ where it's mandatory. for example, heap allocated pointer and it's content.</li>
 </div>
 </li>
 
-<li><a id="org5a7ceb1"></a>reference<br />
+<li><a id="orgda034e3"></a>reference<br />
 <div class="outline-text-5" id="text-1-1-8-2">
 <ul class="org-ul">
 <li>declaration: &amp;&lt;identifier&gt;;
@@ -355,7 +356,7 @@ it's a mechanism for getting an address of the target.</li>
 </div>
 </li>
 
-<li><a id="orgb4ed73b"></a>dereferencing<br />
+<li><a id="org8cf7c00"></a>dereferencing<br />
 <div class="outline-text-5" id="text-1-1-8-3">
 <ul class="org-ul">
 <li>Getting the content of the pointer.
@@ -369,7 +370,7 @@ it's a mechanism for getting an address of the target.</li>
 </div>
 </li>
 
-<li><a id="org40e4e09"></a>pointer arithmetic<br />
+<li><a id="org9146319"></a>pointer arithmetic<br />
 <div class="outline-text-5" id="text-1-1-8-4">
 <ul class="org-ul">
 <li>pointer value can be changed just like ordinary integer values.</li>
@@ -377,7 +378,7 @@ it's a mechanism for getting an address of the target.</li>
 </div>
 </li>
 
-<li><a id="orgf36aac1"></a>example<br />
+<li><a id="org2494791"></a>example<br />
 <div class="outline-text-5" id="text-1-1-8-5">
 <div class="org-src-container">
 <pre class="src src-c"><span class="org-type">int</span> <span class="org-variable-name">a</span> = 1;
@@ -422,12 +423,12 @@ printf(<span class="org-string">"%d\n"</span>, *pint);   <span class="org-commen
 </div>
 
 
-<div id="outline-container-orgfb86124" class="outline-4">
-<h4 id="orgfb86124"><span class="section-number-4">1.1.9</span> memory model for programmer.</h4>
+<div id="outline-container-orga7195e4" class="outline-4">
+<h4 id="orga7195e4"><span class="section-number-4">1.1.9</span> memory model for programmer.</h4>
 <div class="outline-text-4" id="text-1-1-9">
 </div>
 <ol class="org-ol">
-<li><a id="orgca40fd0"></a>heap allocated variable.<br />
+<li><a id="org423c09d"></a>heap allocated variable.<br />
 <div class="outline-text-5" id="text-1-1-9-1">
 <ul class="org-ul">
 <li>for large.(why?)</li>
@@ -453,7 +454,7 @@ for c language, the `malloc`/`free` function is used for allocation/deallocation
 </li>
 
 
-<li><a id="orgca771f8"></a>stack allocated variable.<br />
+<li><a id="org1ac648e"></a>stack allocated variable.<br />
 <div class="outline-text-5" id="text-1-1-9-2">
 <ul class="org-ul">
 <li>for small. (why?)</li>
@@ -482,18 +483,18 @@ for c language, block scope is main sematic for stack allocations.</li>
 </div>
 
 
-<div id="outline-container-org936a723" class="outline-4">
-<h4 id="org936a723"><span class="section-number-4">1.1.10</span> control flow</h4>
+<div id="outline-container-orgb286501" class="outline-4">
+<h4 id="orgb286501"><span class="section-number-4">1.1.10</span> control flow</h4>
 <div class="outline-text-4" id="text-1-1-10">
 </div>
 <ol class="org-ol">
-<li><a id="org9bda3c8"></a>if else<br /></li>
+<li><a id="org56074d9"></a>if else<br /></li>
 
-<li><a id="org8f73d2f"></a>for loop<br /></li>
+<li><a id="orga175769"></a>for loop<br /></li>
 
-<li><a id="org1bc6de9"></a>while, do ~ while<br /></li>
+<li><a id="org8c58669"></a>while, do ~ while<br /></li>
 
-<li><a id="orgeae09a2"></a>switch<br />
+<li><a id="org507193b"></a>switch<br />
 <div class="outline-text-5" id="text-1-1-10-4">
 <ul class="org-ul">
 <li><p>
@@ -528,7 +529,7 @@ synatx
 </div>
 </li>
 
-<li><a id="orgf43267a"></a>break<br />
+<li><a id="orgeb2d076"></a>break<br />
 <div class="outline-text-5" id="text-1-1-10-5">
 <ul class="org-ul">
 <li><p>
@@ -551,7 +552,7 @@ Abort the nearst loop construct like   <code>for</code>, <code>while</code>, <co
 </div>
 </li>
 
-<li><a id="org7ab3ae5"></a>continue<br />
+<li><a id="orge5418a1"></a>continue<br />
 <div class="outline-text-5" id="text-1-1-10-6">
 <ul class="org-ul">
 <li><p>
@@ -574,7 +575,7 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </div>
 </li>
 
-<li><a id="org70bd42e"></a>goto<br />
+<li><a id="org6718167"></a>goto<br />
 <div class="outline-text-5" id="text-1-1-10-7">
 <ul class="org-ul">
 <li>synatx: <code>goto &lt;label name&gt;;</code></li>
@@ -584,7 +585,7 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </div>
 </li>
 
-<li><a id="orgb565ca8"></a>label<br />
+<li><a id="orgc60dd35"></a>label<br />
 <div class="outline-text-5" id="text-1-1-10-8">
 <ul class="org-ul">
 <li>synatx: <code>&lt;label name&gt;:</code></li>
@@ -596,8 +597,8 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </div>
 
 
-<div id="outline-container-org3d4788f" class="outline-4">
-<h4 id="org3d4788f"><span class="section-number-4">1.1.11</span> operator precedence</h4>
+<div id="outline-container-orga59acc6" class="outline-4">
+<h4 id="orga59acc6"><span class="section-number-4">1.1.11</span> operator precedence</h4>
 <div class="outline-text-4" id="text-1-1-11">
 <p>
 <a href="https://en.cppreference.com/w/c/language/operator_precedence">https://en.cppreference.com/w/c/language/operator_precedence</a>
@@ -606,12 +607,12 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </div>
 
 
-<div id="outline-container-org31dc55a" class="outline-4">
-<h4 id="org31dc55a"><span class="section-number-4">1.1.12</span> preprocessor</h4>
+<div id="outline-container-orgc00c261" class="outline-4">
+<h4 id="orgc00c261"><span class="section-number-4">1.1.12</span> preprocessor</h4>
 <div class="outline-text-4" id="text-1-1-12">
 </div>
 <ol class="org-ol">
-<li><a id="orgbe293b2"></a>#include<br />
+<li><a id="orgc8a0785"></a>#include<br />
 <div class="outline-text-5" id="text-1-1-12-1">
 <ul class="org-ul">
 <li>syntax: <code>#include &lt;relative path&gt;</code> or  <code>#include "relative path"</code></li>
@@ -626,7 +627,7 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </li>
 
 
-<li><a id="orgec8b7e8"></a>#define<br />
+<li><a id="orgc8dc553"></a>#define<br />
 <div class="outline-text-5" id="text-1-1-12-2">
 <ul class="org-ul">
 <li>syntax: <code>#define A B</code></li>
@@ -637,61 +638,227 @@ similar to break, it does not completely aborts loop entirely but just aborts si
 </li>
 
 
-<li><a id="org8fbdc11"></a>#ifdef #elif #endif<br /></li>
+<li><a id="org895d719"></a>#ifdef #elif #endif<br /></li>
+</ol>
+</div>
+
+
+<div id="outline-container-org87ea2d5" class="outline-4">
+<h4 id="org87ea2d5"><span class="section-number-4">1.1.13</span> Input / Ouput</h4>
+<div class="outline-text-4" id="text-1-1-13">
+</div>
+<ol class="org-ol">
+<li><a id="orgee7fb17"></a>Console I/O<br />
+<div class="outline-text-5" id="text-1-1-13-1">
+<ul class="org-ul">
+<li>input: <code>void scanf(char* format, *arguments...)</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c"><span class="org-type">int</span> <span class="org-variable-name">a</span>;
+scanf(<span class="org-string">"%d"</span>, &amp;a);
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>output: <code>void printf(char *format, arguments...)</code></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-c"><span class="org-type">int</span> <span class="org-variable-name">a</span> = 1;
+printf(<span class="org-string">"%d"</span>, a);
+</pre>
+</div>
+</div>
+</li>
+
+
+<li><a id="orgf7586e0"></a>File I/O<br />
+<div class="outline-text-5" id="text-1-1-13-2">
+<ul class="org-ul">
+<li>opening a file: <code>FILE* fopen(char *filename, char* mode)</code></li>
+
+<li>closing a file: <code>fclose(FILE *file)</code></li>
+
+<li><p>
+the <code>mode</code> parameter
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Mode</th>
+<th scope="col" class="org-left">Read as</th>
+<th scope="col" class="org-left">Action</th>
+<th scope="col" class="org-left">Operation</th>
+<th scope="col" class="org-left">File exists</th>
+<th scope="col" class="org-left">File doesn't exist</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">"r"</td>
+<td class="org-left">read</td>
+<td class="org-left">Open</td>
+<td class="org-left">Read</td>
+<td class="org-left">read from start</td>
+<td class="org-left">failure to open</td>
+</tr>
+
+<tr>
+<td class="org-left">"w"</td>
+<td class="org-left">write</td>
+<td class="org-left">Create</td>
+<td class="org-left">Write</td>
+<td class="org-left">destroy contents</td>
+<td class="org-left">create new</td>
+</tr>
+
+<tr>
+<td class="org-left">"a"</td>
+<td class="org-left">append</td>
+<td class="org-left">Append</td>
+<td class="org-left">Write</td>
+<td class="org-left">write to end</td>
+<td class="org-left">create new</td>
+</tr>
+
+<tr>
+<td class="org-left">"r+"</td>
+<td class="org-left">read extended</td>
+<td class="org-left">Open</td>
+<td class="org-left">Read/Write</td>
+<td class="org-left">read from start</td>
+<td class="org-left">error</td>
+</tr>
+
+<tr>
+<td class="org-left">"w+"</td>
+<td class="org-left">write extended</td>
+<td class="org-left">Create</td>
+<td class="org-left">Read/Write</td>
+<td class="org-left">destroy contents</td>
+<td class="org-left">create new</td>
+</tr>
+
+<tr>
+<td class="org-left">"a+"</td>
+<td class="org-left">append extended</td>
+<td class="org-left">Open</td>
+<td class="org-left">Read/Write</td>
+<td class="org-left">write to end</td>
+<td class="org-left">create new</td>
+</tr>
+</tbody>
+</table></br>
+</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>Input
+
+<ul class="org-ul">
+<li>read single line from file:  <code>char* fgets(char* buffer, FILE *file)</code></li>
+
+<li>read single character from file:  <code>int fgetc(FILE *file)</code></li>
+
+<li>beware that <code>fgetc</code> returns <code>int</code> (why?)</li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>Output
+
+<ul class="org-ul">
+<li>write a character to file:  <code>int fputc( int ch, FILE *stream )</code></li>
+
+<li>write a null-terminated string to file:  <code>int fputs(char* str, FILE *stream )</code></li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+Error Handling:
+</p>
+
+<p>
+There will be interal error state is set when executing all of the fseries functions.
+</p>
+</li>
+</ul>
+</div>
+</li>
 </ol>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org5a2b4e9" class="outline-2">
-<h2 id="org5a2b4e9"><span class="section-number-2">2</span> TODO</h2>
+
+<div id="outline-container-orgfdbf5f6" class="outline-2">
+<h2 id="orgfdbf5f6"><span class="section-number-2">2</span> TODO</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org69a0574" class="outline-3">
-<h3 id="org69a0574"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> null terminated string in C</h3>
+<div id="outline-container-org0a7ae0c" class="outline-3">
+<h3 id="org0a7ae0c"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> null terminated string in C</h3>
 </div>
-<div id="outline-container-org0eb2d8e" class="outline-3">
-<h3 id="org0eb2d8e"><span class="section-number-3">2.2</span> <span class="done DONE">DONE</span> control flow constructs</h3>
+<div id="outline-container-org7fe84ce" class="outline-3">
+<h3 id="org7fe84ce"><span class="section-number-3">2.2</span> <span class="done DONE">DONE</span> control flow constructs</h3>
 </div>
-<div id="outline-container-org5501bd3" class="outline-3">
-<h3 id="org5501bd3"><span class="section-number-3">2.3</span> file I/O</h3>
+<div id="outline-container-org91d91ad" class="outline-3">
+<h3 id="org91d91ad"><span class="section-number-3">2.3</span> file I/O</h3>
 </div>
-<div id="outline-container-org363f8a9" class="outline-3">
-<h3 id="org363f8a9"><span class="section-number-3">2.4</span> error handling in C</h3>
+<div id="outline-container-orgfcf3163" class="outline-3">
+<h3 id="orgfcf3163"><span class="section-number-3">2.4</span> error handling in C</h3>
 </div>
-<div id="outline-container-orgb0da453" class="outline-3">
-<h3 id="orgb0da453"><span class="section-number-3">2.5</span> code organization.</h3>
+<div id="outline-container-orgd688315" class="outline-3">
+<h3 id="orgd688315"><span class="section-number-3">2.5</span> code organization.</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-orga2cbe6a" class="outline-4">
-<h4 id="orga2cbe6a"><span class="section-number-4">2.5.1</span> header file</h4>
+<div id="outline-container-org9148dc1" class="outline-4">
+<h4 id="org9148dc1"><span class="section-number-4">2.5.1</span> header file</h4>
 <div class="outline-text-4" id="text-2-5-1">
 </div>
 <ol class="org-ol">
-<li><a id="org0ec6ee6"></a>difference between include "foo.h" vs include &lt;foo.h&gt;<br /></li>
+<li><a id="org6bf92e2"></a>difference between include "foo.h" vs include &lt;foo.h&gt;<br /></li>
 </ol>
 </div>
-<div id="outline-container-orgffc34bd" class="outline-4">
-<h4 id="orgffc34bd"><span class="section-number-4">2.5.2</span> prerpocessor</h4>
+<div id="outline-container-org41998ce" class="outline-4">
+<h4 id="org41998ce"><span class="section-number-4">2.5.2</span> prerpocessor</h4>
 <div class="outline-text-4" id="text-2-5-2">
 </div>
 <ol class="org-ol">
-<li><a id="org3103abf"></a>#define #ifdef #pragma once<br /></li>
+<li><a id="org13ec878"></a>#define #ifdef #pragma once<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org16739ad" class="outline-3">
-<h3 id="org16739ad"><span class="section-number-3">2.6</span> dynamic allocation for struct</h3>
+<div id="outline-container-orgc0c826a" class="outline-3">
+<h3 id="orgc0c826a"><span class="section-number-3">2.6</span> dynamic allocation for struct</h3>
 </div>
-<div id="outline-container-org67a0cba" class="outline-3">
-<h3 id="org67a0cba"><span class="section-number-3">2.7</span> using library</h3>
+<div id="outline-container-orgf9b7ad9" class="outline-3">
+<h3 id="orgf9b7ad9"><span class="section-number-3">2.7</span> using library</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: taemu</p>
-<p class="date">Created: 2020-10-20 화 13:11</p>
+<p class="date">Created: 2020-10-21 수 13:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

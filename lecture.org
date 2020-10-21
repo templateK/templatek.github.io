@@ -336,6 +336,71 @@ https://en.cppreference.com/w/c/language/operator_precedence
 **** #ifdef #elif #endif
 
 
+*** Input / Ouput
+
+**** Console I/O
+
+- input: ~void scanf(char* format, *arguments...)~
+#+begin_src c
+  int a;
+  scanf("%d", &a);
+#+end_src
+
+- output: ~void printf(char *format, arguments...)~
+#+begin_src  c
+  int a = 1;
+  printf("%d", a);
+#+end_src
+
+
+**** File I/O
+
+- opening a file: ~FILE* fopen(char *filename, char* mode)~
+
+- closing a file: ~fclose(FILE *file)~
+
+- the ~mode~ parameter
+
+  | Mode | Read as         | Action | Operation  | File exists      | File doesn't exist |
+  |------+-----------------+--------+------------+------------------+--------------------|
+  | "r"  | read            | Open   | Read       | read from start  | failure to open    |
+  | "w"  | write           | Create | Write      | destroy contents | create new         |
+  | "a"  | append          | Append | Write      | write to end     | create new         |
+  | "r+" | read extended   | Open   | Read/Write | read from start  | error              |
+  | "w+" | write extended  | Create | Read/Write | destroy contents | create new         |
+  | "a+" | append extended | Open   | Read/Write | write to end     | create new         |
+
+
+- Input
+
+  + read single line from file:  ~char* fgets(char* buffer, FILE *file)~
+
+  + read single character from file:  ~int fgetc(FILE *file)~
+
+  + beware that ~fgetc~ returns ~int~ (why?)
+
+    
+- Output
+
+  + write a character to file:  ~int fputc( int ch, FILE *stream )~
+
+  + write a null-terminated string to file:  ~int fputs(char* str, FILE *stream )~
+
+
+- Error Handling:
+
+  There will be interal error state is set when executing all of the fseries functions.
+
+  We can check these errors by ~int ferror( FILE *file )~
+
+  the return value is either 0 on successful or non-zero value 
+
+  + Windows: https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/fputs-fputws?view=vs-2019
+
+  + Linux: https://linux.die.net/man/3/explain_ferror
+
+
+
 * TODO
 ** DONE null terminated string in C
 ** DONE control flow constructs
