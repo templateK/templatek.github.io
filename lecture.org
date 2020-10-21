@@ -218,7 +218,7 @@
          ...
          break;
     default:
-         //do something in case of none of the matching is successful.;
+         //do something in case of none of the matches are successful.;
     }
   #+end_src
 
