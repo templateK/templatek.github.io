@@ -24,7 +24,7 @@
     }
 
     // `char *name` is a pointer parameter we'll explain that later on.
-    void foo_func(char* name) {
+    void foo_func(char *name) {
         printf("hello %s\n", name);
     }
     #+end_src
@@ -43,7 +43,7 @@
   | "%x"   | int as hexidecimal notation.                       |
   | "%f"   | float                                              |
   | "%c"   | char                                               |
-  | "%s"   | char*                                              |
+  | "%s"   | char *                                             |
                                                                 
     #+begin_src c
   int a = 1;                                                    
@@ -158,9 +158,9 @@
   int a = 1;
   // `&a` means getting the address of the `a`.
   // the pointer variable `b` is set by address of the `a`.
-  int* b = &a; 
+  int *b = &a; 
 
-  void foo(int* a) {
+  void foo(int *a) {
       //here the a is dereferenced by `*` operator. aka. getting the content.
       printf("%d\n", *a);
   }
@@ -173,19 +173,19 @@
 
   struct Foo foo = { 0, 'a' };
 
-  struct Foo* pfoo = &foo;
+  struct Foo *pfoo = &foo;
 
   printf("field1: %d, field2: %c\n", pfoo->field1, pfoo->field2);
 
   int arr[5] = {1,2,3,4,5};
-  int* pint = arr;
+  int *pint = arr;
   printf("%d\n", *pint);   // print current content of parr.
-  pint++;                  // increase parr address by size of single integer.
+  pint++;                  // increase pint address by size of single integer.
   printf("%d\n", *pint++); // print then content and increase pointer at the same(?) time.
   pint += 1;               //
   printf("%d\n", *pint);   // what's the result of this?
 
-  char* pchar = (char *)pint;
+  char *pchar = (char *)pint;
   pchar += 4;
   pint = (int *)pchar;
   printf("%d\n", *pint);   // what's the result of this?
@@ -284,7 +284,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
   // allocation for 100 chars.
   // malloc returns (void *) type, so we must type conversion.
-  char* foo = (char *)malloc(100);
+  char *foo = (char *)malloc(100);
 
   // deallocation
   free(foo);
@@ -340,7 +340,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 **** Console I/O
 
-- input: ~void scanf(char* format, *arguments...)~
+- input: ~void scanf(char *format, *arguments...)~
 #+begin_src c
   int a;
   scanf("%d", &a);
@@ -355,7 +355,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 **** File I/O
 
-- opening a file: ~FILE* fopen(char *filename, char* mode)~
+- opening a file: ~FILE *fopen(char *filename, char *mode)~
 
 - closing a file: ~fclose(FILE *file)~
 
@@ -373,7 +373,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 - Input
 
-  + read single line from file:  ~char* fgets(char* buffer, FILE *file)~
+  + read single line from file:  ~char *fgets(char *buffer, FILE *file)~
 
   + read single character from file:  ~int fgetc(FILE *file)~
 
@@ -384,7 +384,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
   + write a character to file:  ~int fputc( int ch, FILE *stream )~
 
-  + write a null-terminated string to file:  ~int fputs(char* str, FILE *stream )~
+  + write a null-terminated string to file:  ~int fputs(char *str, FILE *stream )~
 
 
 - File Error Handling
