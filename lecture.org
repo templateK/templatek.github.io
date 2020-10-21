@@ -370,6 +370,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
   | "w+" | write extended  | Create | Read/Write | destroy contents | create new         |
   | "a+" | append extended | Open   | Read/Write | write to end     | create new         |
 
+  [[./file_open_mode_in_c.png]]
 
 - Input
 
