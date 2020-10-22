@@ -270,6 +270,16 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 *** memory model for programmer.
 
+**** whole executable memory layout
+
+[[./c_program_memory_layout.png]]
+
+- TEXT: Program instructions. read only
+  
+- DATA: Global and static variable.
+
+- BSS: any uninitialized variable including global and static one.
+
 **** heap allocated variable.
 
 - for large.(why?)
@@ -311,7 +321,6 @@ https://en.cppreference.com/w/c/language/operator_precedence
     return 0
   } // <== here a is destroyed
 #+end_src
-
 
 *** preprocessor
 
