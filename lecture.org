@@ -1,18 +1,75 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
-#+TITLE: Data Structure
+#+TITLE: Data Structure - 2020 KNOU
 
-* 2020 KNOU Data Structure
 
-** [ ] C language briefing
+* Abstract Data Type
 
-*** variable
+We consider abstract data types (ADTs), which allow us to build programs that use high-level abstractions.\\
+With abstract data types, we can separate the conceptual transformations that our programs perform on our\\
+data from any particular data structure representation and algorithm implementation.
+
+** Stack ADT 
+
+Suspends a computation or data and restore them in a particular order. \\
+
+LIFO (Last In First Out).
+
+*** The Interface
+#+begin_src  c
+  // creating ADT instance
+  void stack_init();
+
+  // check wether ADT instance is empty
+  bool stack_empty();
+
+  // insert an item to ADT instance
+  void stack_push(Item);
+
+  // getting back an item from ADT instance
+  Item stack_pop();
+#+end_src
+
+*** Applications 
+
+- Arithmetic expression conversion. Infix notation(for Human) to Postfix(for Computer) notation.
+
+- Arithmetic expression evaluation.
+
+- Depth first search algorithm.
+
+- Function call and return state. it's called ~Call stack~.
+
+  For example, The stack trace is displayed when the function call throws an exception in java, 
+
+  #+begin_src java
+    public class Main {
+      public static void main(String[] args) { a(); }
+      static void a() { b(); }
+      static void b() { c(); }
+      static void c() { d(); }
+      static void d() { Thread.dumpStack(); }
+    }
+
+    // java.lang.Exception: Stack trace
+    //   at java.base/java.lang.Thread.dumpStack(Thread.java:1383)
+    //   at Main.d(Main.java:6)
+    //   at Main.c(Main.java:5)
+    //   at Main.b(Main.java:4)
+    //   at Main.a(Main.java:3)
+    //   at Main.main(Main.java:2)
+  #+end_src
+
+
+* C language briefing
+
+** variable
 - declaration: ~<type> <identifier> [= <initial value>];~
   #+begin_src c
     int foo;
     char bar = 'c';
   #+end_src
 
-*** function
+** function
 - declaration: ~<return type> <identifier> ( [parameters] ) {<body statements> [<return> <expression>;]}~
 
 - parameter definition is almost same with the variable decl.
@@ -29,7 +86,7 @@
     }
     #+end_src
 
-***  printf
+**  printf
 - A function for displaying variable.
   it's defined in the `stdio.h` (standard input output)
   it takes an format specifier and constants and variables to print.
@@ -51,7 +108,7 @@
     #+end_src
 
 
-*** array
+** array
 - declaration: ~<type> <name> [<size>][<size>]*~
   the `SIZE` must be known at compile time(the time when the executable is being built by the compiler).
   c language spec mandates row-major order for storing multi-dimensional array.
@@ -71,7 +128,7 @@
     #+end_src
 
 
-***  char * string aka. C string
+**  char * string aka. C string
 - it's just array of `char` with '\0' on the end of the array.
     #+begin_src c
   char *foo = "abcd";
@@ -80,7 +137,7 @@
     #+end_src
 
 
-*** struct
+** struct
 - declaration:
   ~struct <identifier> {<field delcarations>} [<instance>];~
 
@@ -105,7 +162,7 @@
     #+end_src
 
 
-***  typedef struct
+**  typedef struct
 - declaration: ~typedef struct <identifier> {<field delcarations>} [<typename>];~
 
     #+begin_src c
@@ -122,13 +179,13 @@
     };
     #+end_src
 
-*** pointer & reference
+** pointer & reference
 
 - purpose: Sometimes, we need to move around variables without copying
   it's contents for performance reasons and there are a few cases
   where it's mandatory. for example, heap allocated pointer and it's content.
 
-**** pointer
+*** pointer
 
 - declaration: ~<type> * <identifier> [= <initial reference value>];~
 
@@ -136,12 +193,12 @@
 
 - it's also used as an dereferencing mechanism when it is used outside of declaration.
 
-**** reference
+*** reference
 
 - declaration: &<identifier>;
   it's a mechanism for getting an address of the target.
 
-**** dereferencing
+*** dereferencing
 
 - Getting the content of the pointer.
 
@@ -149,11 +206,11 @@
 
   + struct variable: ~<identifier> -> <field name>~ aka `arrow syntax`.
 
-**** pointer arithmetic
+*** pointer arithmetic
 
 - pointer value can be changed just like ordinary integer values.
 
-**** example
+*** example
 #+begin_src  c
   int a = 1;
   // `&a` means getting the address of the `a`.
@@ -192,15 +249,15 @@
 #+end_src
 
 
-*** control flow
+** control flow
 
-**** if else 
+*** if else 
 
-**** for loop
+*** for loop
 
-**** while, do ~ while
+*** while, do ~ while
 
-**** switch
+*** switch
 - synatx
   #+begin_src  c
     switch (<identifier>) {
@@ -226,7 +283,7 @@
 
 - the ~default~ is optional.
 
-**** break
+*** break
 - Abort the nearst loop construct like   ~for~, ~while~, ~do ... while~ and the ~switch~.
     #+begin_src c
       for(int i =0; i < 10; i++) {
@@ -240,7 +297,7 @@
       }
     #+end_src
   
-**** continue
+*** continue
 - similar to break, it does not completely aborts loop entirely but just aborts single execution of the loop. 
     #+begin_src c
       for(int i =0; i < 10; i++) { 
@@ -254,23 +311,23 @@
       }
     #+end_src
 
-**** goto
+*** goto
 - synatx: ~goto <label name>;~
 - can jump to label
 - famous quote: "goto considered harmful" https://www.explainxkcd.com/wiki/index.php/292:_goto
 
-**** label
+*** label
 - synatx: ~<label name>:~
 - a placeholder for goto
 
 
-*** operator precedence 
+** operator precedence 
 https://en.cppreference.com/w/c/language/operator_precedence
 
 
-*** memory model for programmer.
+** memory model for programmer.
 
-**** whole executable memory layout
+*** whole executable memory layout
 
 [[./c_program_memory_layout.png]]
 
@@ -280,14 +337,15 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 - BSS: any uninitialized variable including global and static one.
 
-**** heap allocated variable.
-
-- for large.(why?)
+*** heap allocated variable.
 
 - it can be slow compared to stack. (why?)
 
+- heap allocation is runtime operation. (answer)
+
 - it's allocated/deallocated by programer manually.
-  for c language, the `malloc`/`free` function is used for allocation/deallocation.
+
+  For c language, the ~malloc~ and ~free~ function is used for allocation/deallocation.
 
 #+begin_src  c
   #include <stdlib.h>
@@ -301,13 +359,16 @@ https://en.cppreference.com/w/c/language/operator_precedence
 #+end_src
 
 
-**** stack allocated variable.
-
-- for small. (why?)
+*** stack allocated variable.
 
 - It can be fast compared to heap allocation. (why?)
 
+- The total system stack size of a executable is predetermined by compiler setting
+
+  and/or the OS. In fact, the change of stack size is just a stack pointer movement (answer).
+
 - the memory management is controlled by language semantics.
+
   For c language, block scope is the main sematic for stack allocations.
 
 #+begin_src c
@@ -322,9 +383,9 @@ https://en.cppreference.com/w/c/language/operator_precedence
   } // <== here a is destroyed
 #+end_src
 
-*** preprocessor
+** preprocessor
 
-**** #include
+*** #include
 
 - syntax: ~#include <relative path>~ or  ~#include "relative path"~
 
@@ -335,19 +396,19 @@ https://en.cppreference.com/w/c/language/operator_precedence
 - single quote searches ~system directory~ which is set by compiler option and configurations.
 
 
-**** #define
+*** #define
 
 - syntax: ~#define A B~
 
 - replace ~A~ with ~B~
 
   
-**** #ifdef #elif #endif
+*** #ifdef #elif #endif
 
 
-*** Input / Ouput
+** Input / Ouput
 
-**** Console I/O
+*** Console I/O
 
 - input: ~void scanf(char *format, *arguments...)~
 #+begin_src c
@@ -362,7 +423,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 #+end_src
 
 
-**** File I/O
+*** File I/O
 
 - opening a file: ~FILE *fopen(char *filename, char *mode)~
 
@@ -396,6 +457,18 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
   + write a null-terminated string to file:  ~int fputs(char *str, FILE *stream )~
 
+- Special FILE pointer 
+
+    #+begin_src c
+      FILE *stdin; // standard input
+      FILE *stdout; // standard output
+      FILE *stderr; // standard error
+
+      // what is the differences between these operations?
+      printf("foo");
+      fprintf(stdout, "foo");
+      fprintf(stderr, "foo");
+    #+end_src
 
 - File Error Handling
 
@@ -418,7 +491,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
       #+end_src
 
 
-*** Error Handling 
+** Error Handling 
 
   Interal error state will be set when some c functions is being executed if the operation fails.
 
@@ -434,7 +507,6 @@ https://en.cppreference.com/w/c/language/operator_precedence
     - [[https://linux.die.net/man/3/fputs][linux man page fputs]]
     - [[https://linux.die.net/man/3/errno][linux man page errno]]
     - [[https://linux.die.net/man/3/explain_ferror][linux man page explain＿error]]
-
 
 * TODO
 ** DONE null terminated string in C
