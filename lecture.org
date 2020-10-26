@@ -29,6 +29,8 @@ LIFO (Last In First Out).
   Item stack_pop();
 #+end_src
 
+[[./Lifo_stack.png]]
+
 *** Applications 
 
 - Arithmetic expression conversion. Infix notation(for Human) to Postfix(for Computer) notation.
