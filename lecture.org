@@ -206,6 +206,31 @@ LIFO (Last In First Out).
 
   + struct variable: ~<identifier> -> <field name>~ aka `arrow syntax`.
 
+- dereferece example
+#+begin_src c
+  #include <stdio.h>
+
+  typedef struct Foo {
+      int a;
+      int b;
+  } Foo;
+
+  int main() {
+      Foo foo = {.a = 1, .b = 2};
+      Foo *bar = &foo;
+      Foo wat = *bar; // dereferenced foo struct copied to wat.
+
+      printf("foo address: %p\n",&foo);
+      printf("bar address: %p\n",bar);
+      printf("wat address: %p\n",&wat);
+      return 0;
+  }
+  // foo address: 0x7ffee918b200 
+  // bar address: 0x7ffee918b200 
+  // wat address: 0x7ffee918b1f0 
+#+end_src
+
+
 *** pointer arithmetic
 
 - pointer value can be changed just like ordinary integer values.
