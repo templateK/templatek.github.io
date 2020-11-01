@@ -62,6 +62,51 @@ LIFO (Last In First Out).
   #+end_src
 
 
+** Queue ADT 
+
+Inserting elements from one side and popping out them from the other side.
+
+FIFO (First In First Out).
+
+*** The Interface
+
+#+begin_src  c
+  // creating ADT instance
+  void queue_init();
+
+  // check wether ADT is empty
+  bool queue_empty();
+
+  // add item to the back
+  void queue_push(item);
+
+  // get an item from the front
+  item queue_pop();
+#+end_src
+
+*** Applications 
+
+- OS thread scheduling.
+  + FCFS: first come first served policy.
+  + RR: Round-Robin.
+
+- Processing network packet.
+
+- Breadth-first Search(BFS) in Searching algorithm.
+
+
+*** Implementation 
+
+**** Linked list Queue
+
+A linked list based queue using [[*Self Referential Struct][Self Referential Struct]].
+
+
+**** Circular Queue
+
+An array based queue implementation. it's also called ~ring buffer~
+
+
 * C language briefing
 
 ** variable
@@ -275,6 +320,23 @@ LIFO (Last In First Out).
   printf("%d\n", *pint);   // what's the result of this?
 #+end_src
 
+** Self Referential Struct
+
+A struct contains a pointer field to same type of struct instance.
+
+~struct Foo~ contains same type struct Foo pointer field ~next~
+#+begin_src c
+   //             ++--------------+
+   //             ||              |
+   //             \/              |
+  typedef struct Foo { //         |
+                       //         |
+    struct Foo *next;  //         |
+       //   \                     |
+       //    \--------------------+
+  } Foo;
+
+#+end_src
 
 ** control flow
 
@@ -509,12 +571,13 @@ https://en.cppreference.com/w/c/language/operator_precedence
 - example 
 
     #+begin_src c
-    FILE *file = fopen("foo.txt", "r");
-    int result = 0;
-    while ( (result = fgets(buf, file)) != NULL) {
-        printf("%s", result);
-    }
-    fclose(file);
+      FILE *file = fopen("foo.txt", "r");
+      char *result;
+      char buf[256];
+      while ( (result = fgets(buf, 256, file)) != NULL) {
+          printf("%s", result);
+       }
+      fclose(file);
       #+end_src
 
 
