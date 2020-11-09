@@ -101,11 +101,178 @@ FIFO (First In First Out).
 
 A linked list based queue using [[*Self Referential Struct][Self Referential Struct]].
 
+[[./linked_list.png]]
 
 **** Circular Queue
 
 An array based queue implementation. it's also called ~ring buffer~
 
+
+* Tree
+
+** Binary Tree
+
+*** Properties of Binary Tree
+
+it has two children nodes. left and right
+
+The height of the tree which has total n nodes: h = Ceil(log_2(n+1)) (why?)
+
+**** full binary tree
+
+All nodes have either two children or none.
+
+**** perfect binary tree
+
+All nodes have both children except on the leaf.
+
+All leaves should be at the same depth from the root.
+
+**** complete binary tree
+
+Every nodes are completely filled except last level of nodes.
+
+On the last level, all nodes should be as far left as possible.
+
+** Tree Traversal
+
+*** Preorder
+
+Node => Left => Right
+
+ #+begin_src  c
+   void preorder_traverse(Tree *tree, Node *node) {
+       if (node == NULL) {
+           return;
+       }
+       do_something(node);
+       preorder_traverse(tree, node->left);
+       preorder_traverse(tree, node->right);
+   }
+ #+end_src
+
+*** Inorder
+
+Left => Node => Right
+
+ #+begin_src  c
+   void inorder_traverse(Tree *tree, Node *node) {
+       if (node == NULL) {
+           return;
+       }
+       inorder_traverse(tree, node->left);
+       do_something(node);
+       inorder_traverse(tree, node->right);
+   }
+ #+end_src
+
+*** Postorder
+
+Left => Right => Node
+
+ #+begin_src  c
+   void postorder_traverse(Tree *tree, Node *node) {
+       if (node == NULL) {
+           return;
+       }
+       postorder_traverse(tree, node->left);
+       postorder_traverse(tree, node->right);
+       do_something(node);
+   }
+ #+end_src
+
+
+** Binary Search Tree
+
+The search tree data structure supports many dynamic-set operations,
+
+including SEARCH, MINIMUM, MAXIMUM, PREDECESSOR, SUCCESSOR, INSERT, and DELETE.
+
+
+*** Tree Minimum
+ #+begin_src python 
+   def TreeMinimum(x):
+       while x.right is not None:
+           x = x.right
+       return x
+ #+end_src
+
+Can you implement TreeMaximum? 
+
+*** Tree Inorder Successor
+
+[[./tree_successor.png]]
+ #+begin_src python
+   def TreeSuccessor(x):
+       if x.right is not None:
+           return TreeMinimum(x.right)
+       y = x.p
+       while y is not None and x == y.right:
+           x = y
+           y = y.p
+       return y
+ #+end_src
+
+What is the key number of inorder successor of the 13?
+
+How do we implement TreePredecessor?
+
+*** Tree Insert
+
+[[./tree_insert.png]]
+ #+begin_src python
+   def TreeInsert(T, z):
+       y = None
+       x = T.root
+       while x is not None:
+           y = x
+           if z.key < x.key:
+               x = x.left
+           else:
+               x = x.right
+       z.p = y
+       if y is None:
+           T.root = z  # tree was empty
+       elif z.key < y.key:
+           y.left = z
+       else:
+           y.right = z
+ #+end_src
+
+
+*** Tree Delete
+
+#+begin_src python
+def TransPlant(T, u, v):
+    if u.p is None:
+        T.root = v
+    elif u == u.p.left:
+        u.p.left = v
+    else:
+        u.p.right = v
+    if v is not None:
+        v.p = u.p
+#+end_src
+
+
+[[./tree_delete.png]]
+
+#+begin_src python
+  def TreeDelete(T, z):
+      if z.left is None:
+          TransPlant(T, z, z.right)
+      elif z.right is None:
+          TransPlant(T, z, z.left)
+      else:
+          y = TreeMinimum(z.right)
+          if y.p != z:
+              TransPlant(T, y, y.right)
+              y.right = z.right
+              y.right.p = y
+          TransPlant(T, z, y)
+          y.left = z.left
+          y.left.p = y
+#+end_src
 
 * C language briefing
 
