@@ -200,7 +200,6 @@ Left => Right => Node
    }
  #+end_src
 
-
 ** Binary Search Tree
 
 The search tree data structure supports many dynamic-set operations,
@@ -292,6 +291,91 @@ def TransPlant(T, u, v):
           y.left = z.left
           y.left.p = y
 #+end_src
+
+** Max(Min) Heap
+
+A heap is a specialized tree-based data structure which is a complete binary tree
+
+that satisfies the [[*Heap Invariant][heap invariant]].
+
+Can you expect time complexity of the operation this datastruct supports?
+
+*** Applications
+
+Fast Max(Min) value extrating, Heap sorting, Priority Queue
+
+
+*** Array based Heap Index calculation
+
+[[./heap_indexing.png]]
+
+#+begin_src  python
+  def Parent(i):
+      return math.floor(i/2)
+
+  def Left(i):
+      return 2*i 
+
+  def Right(i):
+      return 2*i + 1
+#+end_src
+
+*** Heap Invariant
+
+ Every parent node key must be greater than(less than) equal to
+
+ child node key. therefore, the root key is the maximum(minimum).
+
+[[./heapify.png]]
+#+begin_src  python
+  def Max_Heapify(A, i):
+      l = Left(i)
+      r = Right(i)
+      if l <= A.heap_size and A[l] > A[i]:
+          largest = l
+      else:
+          largest = i
+      if r <= A.heap_size and A[r] > A[largest]:
+          largest = r
+      if largest != i:
+          A[i], A[largest] = A[largest], A[i]
+          Max_Heapify(A, largest)
+#+end_src
+
+*** extract-min or extract-max
+#+begin_src  python
+  def Heap_Extract_Max(A):
+      if A.heap_size < 1:
+          raise Exception("heap underflow")
+      max = A[1]
+      A[1] = A[A.heap_size]
+      A.heap_size = A.heap_size - 1
+      Max_Heapify(A, 1)
+      return max
+#+end_src
+
+*** insert
+
+[[./heap_increase_key.png]]
+
+#+begin_src  python
+  def Heap_Increase_Key(A, i, key):
+      if key < A[i]:
+          raise Exception("new key is small than current key")
+      A[i] = key
+      p = Parent(i)
+      while i > 1 and A[p] < A[i]:
+          A[i], A[p] = A[p], A[i]
+          i = p
+#+end_src
+
+#+begin_src python
+  def Max_Heap_Insert(A, key):
+      A.heap_size = A.heap_size + 1
+      A[A.heap_size] = -infinity
+      Heap_Increase_Key(A, A.heap_size, key)
+#+end_src
+
 
 * C language briefing
 
