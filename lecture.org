@@ -200,54 +200,35 @@ Left => Right => Node
    }
  #+end_src
 
+*** DFS Inorder Tree Traversal
+#+begin_example
+  1) Create an empty stack S.
+  2) Initialize current node as root
+  3) Push the current node to S and set current = current->left until current is NULL
+  4) If current is NULL and stack is not empty then 
+      a) Pop the top item from stack.
+      b) Print the popped item, set current = popped_item->right 
+      c) Go to step 3.
+  5) If current is NULL and stack is empty then we are done.
+ #+end_example
+
+*** Inorder Traversal with Threaded Binary Tree
+
+[[./media/threaded_binary_tree.png]]
+
 
 *** Morris Inorder Traversal
 
 [[./media/morris_tree_traversal_sample.png]]
 
-#+begin_src python
-  def MorrisInorderTraverse(T):
-      x = T.root
-      while x:
-          if x.l is None:
-              Visit(x.key)
-              x = x.r
-          else:
-              y = x.l
-              while not (y.r is None or y.r is x):
-                  y = y.r
-              if y.r is x:
-                  Visit(x.key)
-                  x = x.r
-                  y.r = None
-              else:
-                  y.r = x
-                  x = x.l
-#+end_src
+[[*Morris Inorder Traversal Algorithm][Morris Inorder Traversal Algorithm]]
+
+
 *** Iterative Inplace Inorder Tree Traversal
 
 [[./media/ternary_pointer_based_tree.png]]
 
-#+begin_src python
-  def BSTreeIterativeInorderTraverse(T):
-      x = T.root
-      y = None
-      while x is not None:
-          if y == x.p and x.l is not None:
-              y = x
-              x = x.l
-
-          elif y == x.l or (y == x.p and x.l is None):
-              Visit(x.key)
-              y = x
-              if x.r:
-                  x = x.r
-              else:
-                  x = x.p
-          else:
-              y = x
-              x = x.p
-#+end_src
+[[*Iterative Inorder Traversal][Iterative Inorder Traversal Algorithm]]
 
 
 *** Tree Inorder Traversal Comparison
@@ -942,3 +923,50 @@ https://en.cppreference.com/w/c/language/operator_precedence
 **** #define #ifdef #pragma once
 ** dynamic allocation for struct
 ** using library
+
+
+* Iterative Inorder Traversal
+
+[[*Iterative Inplace Inorder Tree Traversal][Back to the link]]
+
+#+begin_src python
+  def BSTreeIterativeInorderTraverse(T):
+      x = T.root
+      y = None
+      while x is not None:
+          if y == x.p and x.l is not None:
+              y = x
+              x = x.l
+          elif y == x.l or (y == x.p and x.l is None):
+              Visit(x.key)
+              y = x
+              if x.r:
+                  x = x.r
+              else:
+                  x = x.p
+          else:
+              y = x
+              x = x.p
+#+end_src
+
+* Morris Inorder Traversal Algorithm 
+[[*Morris Inorder Traversal][Back to the link]]
+#+begin_src python
+  def MorrisInorderTraverse(T):
+      x = T.root
+      while x:
+          if x.l is None:
+              Visit(x.key)
+              x = x.r
+          else:
+              y = x.l
+              while not (y.r is None or y.r is x):
+                  y = y.r
+              if y.r is x:
+                  Visit(x.key)
+                  x = x.r
+                  y.r = None
+              else:
+                  y.r = x
+                  x = x.l
+#+end_src
