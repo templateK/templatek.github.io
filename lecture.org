@@ -203,24 +203,6 @@ Left => Right => Node
 
 *** Morris Inorder Traversal
 
-#+begin_example
-  set node as root
-
-  while node is valid
-      if the node don't have left child
-          do something with node
-          go to right child
-     else 
-          check the right child of predecessor is current node
-          if YES
-               do something with node
-               go to right child
-               set right child to NULL
-          else
-               set the right child of predecessor to node
-#+end_example
-
-
 #+begin_src python
   def MorrisInorderTraverse(T):
       x = T.root
