@@ -29,7 +29,7 @@ LIFO (Last In First Out).
   Item stack_pop();
 #+end_src
 
-[[./Lifo_stack.png]]
+[[./media/Lifo_stack.png]]
 
 *** Applications 
 
@@ -101,7 +101,7 @@ FIFO (First In First Out).
 
 A linked list based queue using [[*Self Referential Struct][Self Referential Struct]].
 
-[[./linked_list.png]]
+[[./media/linked_list.png]]
 
 **** Circular Queue
 
@@ -203,6 +203,8 @@ Left => Right => Node
 
 *** Morris Inorder Traversal
 
+[[./media/morris_tree_traversal_sample.png]]
+
 #+begin_src python
   def MorrisInorderTraverse(T):
       x = T.root
@@ -224,7 +226,7 @@ Left => Right => Node
 #+end_src
 *** Iterative Inplace Inorder Tree Traversal
 
-[[./ternary_pointer_based_tree.png]]
+[[./media/ternary_pointer_based_tree.png]]
 
 #+begin_src python
   def BSTreeIterativeInorderTraverse(T):
@@ -234,6 +236,7 @@ Left => Right => Node
           if y == x.p and x.l is not None:
               y = x
               x = x.l
+
           elif y == x.l or (y == x.p and x.l is None):
               Visit(x.key)
               y = x
@@ -277,7 +280,7 @@ Can you implement TreeMaximum?
 
 *** Tree Inorder Successor
 
-[[./tree_successor.png]]
+[[./media/tree_successor.png]]
  #+begin_src python
    def TreeSuccessor(x):
        if x.right is not None:
@@ -295,7 +298,7 @@ How do we implement TreePredecessor?
 
 *** Tree Insert
 
-[[./tree_insert.png]]
+[[./media/tree_insert.png]]
  #+begin_src python
    def TreeInsert(T, z):
        y = None
@@ -331,7 +334,7 @@ def TransPlant(T, u, v):
 #+end_src
 
 
-[[./tree_delete.png]]
+[[./media/tree_delete.png]]
 
 #+begin_src python
   def TreeDelete(T, z):
@@ -365,7 +368,7 @@ Fast Max(Min) value extrating, Heap sorting, Priority Queue
 
 *** Array based Heap Index calculation
 
-[[./heap_indexing.png]]
+[[./media/heap_indexing.png]]
 
 #+begin_src  python
   def Parent(i):
@@ -384,7 +387,7 @@ Fast Max(Min) value extrating, Heap sorting, Priority Queue
 
  child node key. therefore, the root key is the maximum(minimum).
 
-[[./heapify.png]]
+[[./media/heapify.png]]
 #+begin_src  python
   def Max_Heapify(A, i):
       l = Left(i)
@@ -414,7 +417,7 @@ Fast Max(Min) value extrating, Heap sorting, Priority Queue
 
 *** insert
 
-[[./heap_increase_key.png]]
+[[./media/heap_increase_key.png]]
 
 #+begin_src  python
   def Heap_Increase_Key(A, i, key):
@@ -746,7 +749,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
 
 *** whole executable memory layout
 
-[[./c_program_memory_layout.png]]
+[[./media/c_program_memory_layout.png]]
 
 - TEXT: Program instructions. read only
   
@@ -857,7 +860,7 @@ https://en.cppreference.com/w/c/language/operator_precedence
   | "w+" | write extended  | Create | Read/Write | destroy contents | create new         |
   | "a+" | append extended | Open   | Read/Write | write to end     | create new         |
 
-  [[./file_open_mode_in_c.png]]
+  [[./media/file_open_mode_in_c.png]]
 
 - Input
 
