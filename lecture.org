@@ -200,6 +200,82 @@ Left => Right => Node
    }
  #+end_src
 
+
+*** Morris Inorder Traversal
+
+#+begin_example
+  set node as root
+
+  while node is valid
+      if the node don't have left child
+          do something with node
+          go to right child
+     else 
+          check the right child of predecessor is current node
+          if YES
+               do something with node
+               go to right child
+               set right child to NULL
+          else
+               set the right child of predecessor to node
+#+end_example
+
+
+#+begin_src python
+  def MorrisInorderTraverse(T):
+      x = T.root
+      while x:
+          if x.l is None:
+              Visit(x.key)
+              x = x.r
+          else:
+              y = x.l
+              while not (y.r is None or y.r is x):
+                  y = y.r
+              if y.r is x:
+                  Visit(x.key)
+                  x = x.r
+                  y.r = None
+              else:
+                  y.r = x
+                  x = x.l
+#+end_src
+*** Iterative Inplace Inorder Tree Traversal
+
+[[./ternary_pointer_based_tree.png]]
+
+#+begin_src python
+  def BSTreeIterativeInorderTraverse(T):
+      x = T.root
+      y = None
+      while x is not None:
+          if y == x.p and x.l is not None:
+              y = x
+              x = x.l
+          elif y == x.l or (y == x.p and x.l is None):
+              Visit(x.key)
+              y = x
+              if x.r:
+                  x = x.r
+              else:
+                  x = x.p
+          else:
+              y = x
+              x = x.p
+#+end_src
+
+
+*** Tree Inorder Traversal Comparison
+
+|                            | Time Complexity | Additional Space Complexity | Trade off                           |
+|----------------------------+-----------------+-----------------------------+-------------------------------------|
+| Recursive Traversal        | n  => O(n)      | ?      => O(?)              | Depth limit                         |
+| DFS Traversal              | n  => O(n)      | log(n) => O(log(n))         | Requires Store Space                |
+| Naive Threaded Binary Tree | n  => O(n)      | 2n     => O(n)              | Requires Store Space                |
+| Threaded Binary Tree       | n  => O(n)      | 1      => O(1)              | Slight complicated implementation   |
+| Morris Traversal           | 3n => O(n)      | c      => O(1)              | Fast but with slight time overhead  |
+| Iterative inplace Tree     | n  => O(n)      | n      => O(n)              | Fast but with slight space overhead |
+
 ** Binary Search Tree
 
 The search tree data structure supports many dynamic-set operations,
