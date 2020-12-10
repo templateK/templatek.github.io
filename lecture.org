@@ -200,7 +200,8 @@ Left => Right => Node
    }
  #+end_src
 
-*** DFS Inorder Tree Traversal
+*** Iterative Inorder Tree Traversal with Stack
+
 #+begin_example
   1) Create an empty stack S.
   2) Initialize current node as root
@@ -211,6 +212,8 @@ Left => Right => Node
       c) Go to step 3.
   5) If current is NULL and stack is empty then we are done.
  #+end_example
+
+ [[*Iterative Inorder Tree Traversal with Stack Algorithm][Iterative Inorder Tree Traversal with Stack Algorithm]]
 
 *** Inorder Traversal with Threaded Binary Tree
 
@@ -236,7 +239,7 @@ Left => Right => Node
 |                            | Time Complexity | Additional Space Complexity | Trade off                           |
 |----------------------------+-----------------+-----------------------------+-------------------------------------|
 | Recursive Traversal        | n  => O(n)      | ?      => O(?)              | Depth limit                         |
-| DFS Traversal              | n  => O(n)      | log(n) => O(log(n))         | Requires Store Space                |
+| Stack Traversal            | n  => O(n)      | log(n) => O(log(n))         | Requires Store Space                |
 | Naive Threaded Binary Tree | n  => O(n)      | 2n     => O(n)              | Requires Store Space                |
 | Threaded Binary Tree       | n  => O(n)      | 1      => O(1)              | Slight complicated implementation   |
 | Morris Traversal           | 3n => O(n)      | c      => O(1)              | Fast but with slight time overhead  |
@@ -933,8 +936,8 @@ https://en.cppreference.com/w/c/language/operator_precedence
   def BSTreeIterativeInorderTraverse(T):
       x = T.root
       y = None
-      while x is not None:
-          if y == x.p and x.l is not None:
+      while x:
+          if y == x.p and x.l:
               y = x
               x = x.l
           elif y == x.l or (y == x.p and x.l is None):
@@ -970,3 +973,20 @@ https://en.cppreference.com/w/c/language/operator_precedence
                   y.r = x
                   x = x.l
 #+end_src
+
+* Iterative Inorder Tree Traversal with Stack Algorithm 
+
+[[*Iterative Inorder Tree Traversal with Stack][Back to the link]]
+
+ #+begin_src  python
+   def IterativeInorderWithStack(T):
+      x = T.root
+      while x or not stack:
+         while x:
+            stack.push(x)
+            x = x.l
+         if x is None and not stack:
+            y = stack.pop()
+            Visit(y)
+            x = y.r
+ #+end_src
