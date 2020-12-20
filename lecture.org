@@ -421,6 +421,177 @@ Fast Max(Min) value extrating, Heap sorting, Priority Queue
       Heap_Increase_Key(A, A.heap_size, key)
 #+end_src
 
+* Hash 
+ 
+** What is good hash function?
+
+ - Hash function must be deterministic.
+
+ - Uniformly distributed hash value over the slots.
+
+ In practice, we cannot derive such ideal hash function in advance because the input is unknown.
+
+ the hash collision is inevitable 🤔.
+ 
+[[./media/hash_collison.png]]
+
+** Simple Hashing
+
+Collision resolution by chaning.
+
+If there's a hash collison when inserting item, we use chaining to mitigate it 😎.
+
+[[./media/simple_hash.png]]
+
+[[*Algorithm of Simple Hashing with Chaining][Algorithm of Simple Hashing with Chaining]]
+
+** Hash Function
+
+*** Division Method
+
+$$ h(k) = k \; mod \; m $$
+
+- We must avoid power of 2 for value m. A prime number is often good enough.
+
+  The hash value is just lowest bits of k if m is power of 2 when m is power of 2.
+  
+
+*** Multiplication Method
+
+$$ h(k) = \lfloor (k \cdot A) \; mod \; 1 \rfloor $$
+
+
+- We choose ~A~ to be below according to Knuth
+
+   $$ A \approx \dfrac{\sqrt{5} - 1}{2} $$ 
+
+
+- To avoid floating point arithematic for performance reasons,
+  We inflate the ~A~ with ~2^w~ to fit in the machine's word size ~w~
+
+  $$ s = A \cdot 2^w $$
+
+
+
+$$ k \cdot s = r_1 \cdot 2^{w} + r_0 $$
+
+- ~mod~ operation : Cut off the overflowed bits ~r1~,
+
+- ~floor~ operation: Take the most significant bits from ~r0~ just like
+   we take most significant digits when flooring floating point values.
+
+[[./media/hashing_multiplication_method.png]]
+
+
+** Open Addressing
+
+Hashing with slot numbers with no satellite datastructures. In other words, One value per one slot.
+
+$$ h(k, i) \quad where \quad  i \; \in \; 0 \ldots m-1 $$
+
+[[./media/open_addressing_double_hashing.png]]
+
+*** Linear Probing
+
+$$ h(k, i) = (h'(k) + i) \; mod \; m $$
+
+*** Quadratic Probing
+
+$$ h(k, i) = (h'(k) + c_1 i + c_2 i^2) \; mod \; m $$
+
+*** Double Hashing
+
+$$ h(k, i) = (h_1(k) + i\,h_2(k)) \;mod \; m $$
+
+
+*** Open Addressing Algorithm
+
+#+begin_src python
+  def HashInsert(T, k):
+      i = 0
+      while i < m:
+          j = h(k, i)
+          if T[j] == None:
+              T[j] = k
+              return j
+          else:
+              i = i + 1
+      raise "hash table overflow"
+
+
+  def HashSearch(T, k):
+      i = 0
+      while True:
+          j = h(k, i)
+          if T[j] == k:
+              return j
+          i = i + 1
+          if T[j] is None or i == m:
+              break
+      return None
+#+end_src
+
+*** Cuckoo Hashing
+https://en.wikipedia.org/wiki/Cuckoo_hashing
+
+
+** Universal Hashing
+
+If a malicious adversary chooses the keys to be hashed by some fixed hash function, then the adversary can choose n keys that all hash to the same slot, yielding an av- erage retrieval time of $\theta (n)$ Any fixed hash function is vulnerable to such terrible worst-case behavior; the only effective way to improve the situation is to choose the hash function randomly in a way that is independent of the keys that are actually going to be stored. This approach, called universal hashing, can yield provably good performance on average, no matter which keys the adversary chooses.
+
+Universal hashing algorithms do not use randomness when calculating a hash for a key. Random numbers are only used during the initialization of the hash table to choose a hash function from a family of hash functions. This prevents an adversary with access to the details of the hash function from devising a worst case set of keys.
+
+In other words, during the lifetime of the hash table, the bucket for a given key is consistent. However, a different instance (such as next time the program runs) may place that same key in a different bucket.
+
+*** Designing a universal class of hash functions
+
+
+$$ h_{ab}(k) = ((ak + b) \; mod \; p) \; mod \; m $$
+
+$$ Z^*_p = \{ 1 \ldots p - 1 \} $$
+$$ Z_p = \{ 0 \ldots p - 1 \} $$
+$$ H_{pm} = \{ h_{ab} : a \in Z^*_p \; and \; b \in Z_p \} $$ 
+
+** Perfect Hashing
+
+The worst-case performance of dynamic hashing algorithm can be poor on
+predetermined set of keys.
+
+- Each slot must have sqaure space of keys hashed into that slot.
+
+  [[./media/perfect_hashing.png]]
+
+- GNU gperf software generates perfect hash function.
+
+** Algorithm of Simple Hashing with Chaining
+
+[[*Simple Hashing][Back to the Link]]
+
+#+begin_src python
+  def HashInsert(H, x):
+      h = Hash(x.key)
+      L = H[h]
+      if L is None:
+          H[h] = [x]
+      else:
+          L.append(x)
+
+
+  def HashDelete(H, x):
+      h = Hash(x.key)
+      L = H[h]
+      if L:
+          L.remove(x)
+
+
+  def HashSearch(H, x):
+      h = Hash(x)
+      L = H[h]
+      if L:
+          return L.search(x)
+      return None
+#+end_src
+
 
 * C language briefing
 
@@ -918,14 +1089,17 @@ https://en.cppreference.com/w/c/language/operator_precedence
 ** DONE control flow constructs
 ** DONE file I/O
 ** DONE error handling in C
-** rinb buffer algorithm
-** code organization.
+** DONE code organization.
 *** header file
 **** difference between include "foo.h" vs include <foo.h>
 *** prerpocessor
 **** #define #ifdef #pragma once
+** DONE ring buffer algorithm
+** ring buffer implementation practice
 ** dynamic allocation for struct
 ** using library
+** Heap Increase Key algorithm should be fixed
+** More clarification of Tree Inorder Traversal Comparison table 
 
 
 * Iterative Inorder Traversal
